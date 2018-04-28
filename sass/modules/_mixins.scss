@@ -1,0 +1,129 @@
+// Selection
+$prefixes: ("-moz-", "");
+@mixin selection($color, $background) {
+    @each $prefix in $prefixes {
+        ::#{$prefix}selection {
+            color: $color;
+            background: $background;
+        }
+    }
+}
+// Border radiuss
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+// Position vertical center
+@mixin positioning-vertical-center {
+  position: absolute;
+  top: 50%;
+  margin: 0;
+  -webkit-transform:translate(0, -50%);
+  -moz-transform:translate(0, -50%);
+  transform:translate(0, -50%);
+}
+// Position center
+@mixin positioning-center {
+  position: absolute;
+  left:50%;
+  margin-right:-50%;
+  -webkit-transform:translate(-50%, -50%);
+  -moz-transform:translate(-50%, -50%);
+  transform:translate(-50%, -50%);
+}
+// Position center center
+@mixin positioning-center-center {
+	position: absolute;
+	top:50%;
+	left:50%;
+	margin-right:-50%;
+	-webkit-transform:translate(-50%, -50%);
+	-moz-transform:translate(-50%, -50%);
+	transform:translate(-50%, -50%);
+}
+// Transition
+@mixin transition($transition...) {
+    -moz-transition:    $transition;
+    -o-transition:      $transition;
+    -webkit-transition: $transition;
+    transition:         $transition;
+}
+// Transform
+@mixin transform($transforms) {
+    -moz-transform:    $transforms;
+    -o-transform:      $transforms;
+    -webkit-transform: $transforms;
+    transform:         $transforms;
+}
+
+// rotate
+@mixin rotate ($deg) {
+  @include transform(rotate(#{$deg}deg));
+}
+
+//transform origin
+@mixin transform-origin ($origin) {
+    moz-transform-origin: $origin;
+       -o-transform-origin: $origin;
+      -ms-transform-origin: $origin;
+  -webkit-transform-origin: $origin;
+          transform-origin: $origin;
+}
+
+// Calculate
+@mixin calc($property, $expression) { 
+  #{$property}: -webkit-calc(#{$expression}); 
+  #{$property}: calc(#{$expression}); 
+}
+
+// Background image
+@mixin background-image {
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+// Background image icon
+@mixin background-image-icon {
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+// Not selectable
+@mixin prevent-dragging {
+  -moz-user-select: none;
+    -webkit-user-drag: none;
+      -webkit-user-select: none;
+        -ms-user-select: none;
+}
+
+// Aspect ratio
+@mixin aspect-ratio($width, $height) {
+  position: relative;
+  &:before {
+    display: block;
+    content: "";
+    width: 100%;
+    padding-top: ($height / $width) * 100%;
+  }
+  > .content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+// Row margin 0px
+@mixin row-no-margin() {
+	margin-left: 0px;
+	margin-right: 0px;
+}
+// Box Shadow image 
+@mixin box-shadow() {
+	-o-box-shadow: 0px 22px 48px 0px rgba(0,0,0,0.17);
+	-ms-box-shadow: 0px 22px 48px 0px rgba(0,0,0,0.17);
+	-webkit-box-shadow: 0px 22px 48px 0px rgba(0,0,0,0.17);
+	box-shadow: 0px 22px 48px 0px rgba(0,0,0,0.17);
+}
